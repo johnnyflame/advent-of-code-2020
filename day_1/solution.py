@@ -43,6 +43,19 @@ def two_sum(input, target_sum):
     return None
 
 
+def three_sum(input, target_sum):
+    input = set(input)
+    for val in input:
+        new_target_sum = target_sum - val
+        lookup = set()
+        for other in input - {val}:
+            if new_target_sum - other in lookup:
+                return val, other, new_target_sum - other
+            else:
+                lookup.add(other)
+    return None
+
+
 if __name__ == "__main__":
     input_file = cfg.input
     input_values = []
@@ -52,3 +65,7 @@ if __name__ == "__main__":
 
     num_1, num_2 = two_sum(input_values, 2020)
     print(num_1 * num_2)
+
+    num_1, num_2, num_3 = three_sum(input_values, 2020)
+    print(num_1 * num_2 * num_3)
+    print("done")
