@@ -28,19 +28,18 @@ def check(s):
 
 def check_rule_2(s):
     # parse string and do some preprocessing
-    occurance_range, val, data = s.split(" ")
+    occurance_range, target, data = s.split(" ")
     occurance_range = [int(x) for x in occurance_range.split("-")]
     data = data.strip("\n")
-    val = val.strip(":")
+    target = target.strip(":")
 
     lower, upper = occurance_range
     # offset for zero index
     lower -= 1
     upper -= 1
-    return data[lower] != data[upper] and (data[lower] == val or data[upper] == val)
-
-    # if data[lower] == val or data[upper] == val:
-    #     return data[lower] != data[upper]
+    return data[lower] != data[upper] and (
+        data[lower] == target or data[upper] == target
+    )
 
 
 def validate_passwords(input_file, line_validator):
