@@ -14,22 +14,15 @@ def check_slopes(data, step_x, step_y):
         row = data[curr_row]
         curr_col = (curr_col + step_x) % len(row)
         curr_row += step_y
-
-    # for curr_row, row in enumerate(data):
-    #     if data[curr_row][curr_col] == "#":
-    #         count += 1
-    #     curr_col = (curr_col + step_x) % len(row)
     return count
 
 
-a = get_data(day=3)
-
+input_data = get_data(day=3)
 
 print(
-    check_slopes(a, 3, 1)
-    * check_slopes(a, 1, 1)
-    * check_slopes(a, 5, 1)
-    * check_slopes(a, 7, 1)
-    * check_slopes(a, 1, 2)
+    check_slopes(input_data, 3, 1)
+    * check_slopes(input_data, 1, 1)
+    * check_slopes(input_data, 5, 1)
+    * check_slopes(input_data, 7, 1)
+    * check_slopes(input_data, 1, 2)
 )
-print("done")
