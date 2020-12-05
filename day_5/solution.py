@@ -31,6 +31,7 @@ tickets = data.splitlines()
 NUM_ROWS = 127
 NUM_COLS = 7
 
+# test cases
 assert binary_search(0, NUM_ROWS, "FBFBBFF") == 44
 assert binary_search(0, NUM_COLS, "RLR") == 5
 assert binary_search(0, NUM_ROWS, "BFFFBBF") == 70
@@ -38,10 +39,8 @@ assert find_seat("BFFFBBFRRR") == (70, 7, 567)
 assert find_seat("FFFBBBFRRR") == (14, 7, 119)
 assert find_seat("BBFFBBFRLL") == (102, 4, 820)
 
-seat_ids = []
-for ticket in tickets:
-    _, _, seat_id = find_seat(ticket)
-    seat_ids.append(seat_id)
+
+seat_ids = [find_seat(ticket)[2] for ticket in tickets]
 
 max_id = max(seat_ids)
 min_id = min(seat_ids)
@@ -50,4 +49,3 @@ all_vals = {val for val in range(min_id, max_id)}
 
 print(f"part A answer: {max_id}")
 print(f"part B answer: {all_vals.difference(seat_ids)}")
-print("done")
