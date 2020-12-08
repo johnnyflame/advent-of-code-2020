@@ -16,14 +16,6 @@ acc +6
 """
 
 
-"""
-How to approach it?
-
-What if we just put it in a list, and keep track of the visited index in a set? 
-
-"""
-
-
 def detect_cycle(instructions):
     idx = 0
     accum = 0
@@ -74,5 +66,5 @@ assert fix_instructions_brute_force(test_data) == 8
 input = get_data(day=8)
 data = [line for line in input.splitlines()]
 
-print(f"part A ansswer: {detect_cycle(data)}")
-print(f"part B ansswer: {fix_instructions_brute_force(data)}")
+print(f"part A answer: {detect_cycle(data)}")
+print(f"part B answer: {fix_instructions_brute_force(data)}")

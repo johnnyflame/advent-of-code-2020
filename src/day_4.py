@@ -34,11 +34,11 @@ def validate_content(passport_entry):
     for key, val in passport_entry.items():
         if key == "byr" and not is_in_range(int(val), lower=1920, upper=2002):
             return False
-        if key == "iyr" and not is_in_range(int(val), 2010, 2020):
+        elif key == "iyr" and not is_in_range(int(val), 2010, 2020):
             return False
-        if key == "eyr" and not is_in_range(int(val), 2020, 2030):
+        elif key == "eyr" and not is_in_range(int(val), 2020, 2030):
             return False
-        if key == "hgt":
+        elif key == "hgt":
             if len(val) < 2 or val[-2:] not in {"cm", "in"}:
                 return False
             height, unit = int(val[:-2]), val[-2:]
@@ -50,7 +50,7 @@ def validate_content(passport_entry):
                     return False
             else:
                 return False
-        if key == "hcl":
+        elif key == "hcl":
             header, content = val[0], val[1:]
             valid_set = {
                 "0",
@@ -74,12 +74,14 @@ def validate_content(passport_entry):
                 return False
             if len(content) != 6 or set(content) - valid_set != set():
                 return False
-        if key == "ecl":
+        elif key == "ecl":
             if val not in {"amb", "blu", "brn", "gry", "grn", "hzl", "oth"}:
                 return False
-        if key == "pid":
+        elif key == "pid":
             if len(val) != 9 or not val.isnumeric():
                 return False
+        else:
+            continue
 
     return True
 

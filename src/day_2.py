@@ -1,14 +1,6 @@
-import argparse
 from collections import Counter
 
-parser = argparse.ArgumentParser()
-
-parser.add_argument(
-    "input_file",
-    help="input file to the program",
-)
-
-cfg = parser.parse_args()
+from aocd import get_data
 
 
 def check(s):
@@ -42,14 +34,14 @@ def check_rule_2(s):
     )
 
 
-def validate_passwords(input_file, line_validator):
+def validate_passwords(input_data, line_validator):
     output = 0
-    with open(input_file) as file:
-        for line in file:
-            if line_validator(line):
-                output += 1
+    for line in input_data.splitlines():
+        if line_validator(line):
+            output += 1
     return output
 
 
-# print(validate_passwords(cfg.input_file, check))
-print(validate_passwords(cfg.input_file, check_rule_2))
+data = get_data(day=2)
+print(validate_passwords(data, check))
+print(validate_passwords(data, check_rule_2))

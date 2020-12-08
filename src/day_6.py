@@ -36,7 +36,6 @@ def count_question_2(input):
             ans = []
         else:
             ans.append(line)
-            # intersect = set(line).intersection(intersect)
     total_count += len(ans)
     return total_count
 
