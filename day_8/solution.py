@@ -24,7 +24,7 @@ What if we just put it in a list, and keep track of the visited index in a set?
 """
 
 
-def detect_instruction_loop(instructions):
+def detect_cycle(instructions):
     idx = 0
     accum = 0
     visited = set()
@@ -51,32 +51,28 @@ def detect_instruction_loop(instructions):
 
 # O(n^2) brute force solution
 def fix_instructions_brute_force(instructions):
-    has_cycle, accum = detect_instruction_loop(instructions)
-    if has_cycle:
-        options = {"jmp", "acc"}
+    cycle, accum = detect_cycle(instructions)
+    if cycle:
+        options = {"jmp", "nop"}
         for i, line in enumerate(instructions):
+            accum = 0
             instruction, arg = line.split()
             if instruction in options:
-                instructions[i] = list(options - {instruction})[0] + " " + arg
-                has_cycle, accum = detect_instruction_loop(instructions)
-                if not has_cycle:
+                new_instructions = [val for val in instructions]
+                new_instructions[i] = list(options - {instruction})[0] + " " + arg
+                cycle, accum = detect_cycle(new_instructions)
+                if not cycle:
                     break
-                else:
-                    instructions[i] = "acc " + arg
-                    accum = 0
-
     return accum
 
 
 test_data = [line for line in test_input.splitlines()]
-assert detect_instruction_loop(test_data) == (True, 5)
+assert detect_cycle(test_data) == (True, 5)
 print(fix_instructions_brute_force(test_data))
-
+assert fix_instructions_brute_force(test_data) == 8
 
 input = get_data(day=8)
 data = [line for line in input.splitlines()]
 
-
-print(detect_instruction_loop(data))
-
-abc = 123
+print(f"part A ansswer: {detect_cycle(data)}")
+print(f"part B ansswer: {fix_instructions_brute_force(data)}")
