@@ -4,17 +4,6 @@ from os.path import split
 from aocd import get_data
 from requests.api import options
 
-test_input = """nop +0
-acc +1
-jmp +4
-acc +3
-jmp -3
-acc -99
-acc +1
-jmp -4
-acc +6
-"""
-
 
 def detect_cycle(instructions):
     idx = 0
@@ -57,11 +46,6 @@ def fix_instructions_brute_force(instructions):
                     break
     return accum
 
-
-test_data = [line for line in test_input.splitlines()]
-assert detect_cycle(test_data) == (True, 5)
-print(fix_instructions_brute_force(test_data))
-assert fix_instructions_brute_force(test_data) == 8
 
 input = get_data(day=8)
 data = [line for line in input.splitlines()]
