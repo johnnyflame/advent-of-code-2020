@@ -1,3 +1,5 @@
+import itertools
+
 from aocd import get_data
 
 test_input = """L.LL.LL.LL
@@ -47,6 +49,8 @@ def find_first_neighbour_in_direction(
 
 
 def visible_neighbours(row, col, arr, targets=["#", "L"]):
+
+    itertools.product([0], [1], [-1])
 
     total_neighbours = [
         # going down
